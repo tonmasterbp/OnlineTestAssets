@@ -154,6 +154,16 @@
                 
                 while ($rows = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
                     //print_r($rows);
+
+					$sqlscore = "SELECT sum([comment_score]) as sumscore
+								,count([comment_score])*5 as fullscore
+								,count([user_id]) as countuser
+								FROM [movie_system].[dbo].[comment] WHERE movie_id = ".$rows['movie_id']." ";
+					$resultscore=sqlsrv_query($conn_sap, $sqlscore,$params,$options);
+					$rowsscore = sqlsrv_fetch_array( $resultscore, SQLSRV_FETCH_ASSOC);
+					
+					$shscr = $rowsscore['sumscore']/5;
+
                 ?>
 
                     <div class="col-4 col-md-3 col-lg-2">
@@ -164,8 +174,8 @@
                                 <div class="box-txt">
                                     <a class="title" href="main_review.php?op=<?php echo $rows['movie_id'];?>" ><?php echo $rows['movie_title'];?></a>
                                     <span class="datetime"><span>Showtime <?php echo $rows['movie_release_date_new'];?></span></span>
-                                    <div>Rate 4.5/5</div>
-                                    <div>340 post</div>						
+                                    <div>Rate <?php echo $rowsscore['sumscore']."/".$rowsscore['fullscore']; ?></div>
+                                    <div><?php echo $rowsscore['countuser'];?> post</div>						
                                 </div>   
                                 <div class="box-btn">
                                     <a href="main_review.php?op=<?php echo $rows['movie_id'];?>"  class="btn-buynow"><small>detail</small></a>
