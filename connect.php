@@ -3,7 +3,7 @@
 				$options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
 
 				$server_sap= "DESKTOP-TON-IT\SQLEXPRESS"; 
-				$sap_connectionInfo = array( "Database"=>"movie_system", "UID"=>"sa", "PWD"=>"fdfgfd,yo","MultipleActiveResultSets"=>true,"CharacterSet"  => 'UTF-8');
+				$sap_connectionInfo = array( "Database"=>"movie_system", "UID"=>"sa", "PWD"=>"fdfgfd,dfsd,vyo","MultipleActiveResultSets"=>true,"CharacterSet"  => 'UTF-8');
 
 				//connect database SAP
 				$conn_sap = sqlsrv_connect( $server_sap, $sap_connectionInfo);
